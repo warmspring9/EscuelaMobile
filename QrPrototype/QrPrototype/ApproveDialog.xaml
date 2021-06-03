@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+            xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QrPrototype.ApproveDialog">
+    <ContentPage.Content>
+        <Grid HeightRequest="265" VerticalOptions="End" RowDefinitions="*, Auto">
+            <Frame Grid.RowSpan="2" HeightRequest="225" HorizontalOptions="FillAndExpand"
+                   CornerRadius="30" Padding="20,0" BackgroundColor="White">
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Image Source="check.png" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="0, 10, 0, 0"/>
+                    <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Approved!!" FontSize="20" FontAttributes="Bold" TextColor="#6ee662" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="#363636" FontSize="15" Text="This guardian has permission to pick up the student!!"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Button Grid.Row="1" Text="CONTINUE" TextColor="White" HeightRequest="45" BackgroundColor="#6ee662" Clicked="exit"/>
+        </Grid>
+    </ContentPage.Content>
+</rg:PopupPage>
