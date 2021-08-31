@@ -6,7 +6,7 @@
              BackgroundColor="White">
 
     <StackLayout>
-        <Image Source="qr_placeholder.jpg" Aspect="AspectFill" HeightRequest="550" x:Name="image" Margin="0, 0, 0 ,0"/>
+        <Image Source="qr_placeholder.jpg" Aspect="AspectFill" HeightRequest="350" x:Name="image" Margin="0, 0, 0 ,0"/>
         <Frame x:Name="guardian_info" IsVisible="false" HasShadow="False" Margin="0, -50, 0, -25" CornerRadius="40" VerticalOptions="FillAndExpand" BackgroundColor="White">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*,*,*,*">
                 

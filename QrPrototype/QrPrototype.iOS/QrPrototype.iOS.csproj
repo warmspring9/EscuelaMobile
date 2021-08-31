@@ -157,4 +157,7 @@
   <ItemGroup>
     <BundleResource Include="warning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo.ico" />
+  </ItemGroup>
 </Project>

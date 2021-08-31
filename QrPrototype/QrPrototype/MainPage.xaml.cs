@@ -47,7 +47,7 @@ namespace QrPrototype
     {
         static HttpClient client = new HttpClient();
         // API conection string
-        static string path = "http://e47b2c5ae16a.ngrok.io/api/mobilguardian";
+        static string path = "http://192.168.100.5/api/mobilguardian";
 
         private IDictionary<string, Person> guardians = new Dictionary<string, Person>();
         private IDictionary<string, string> permits = new Dictionary<string, string>();
