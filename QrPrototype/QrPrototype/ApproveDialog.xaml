@@ -11,12 +11,12 @@
                 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Image Source="check.png" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="0, 10, 0, 0"/>
                     <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
-                        <Label Text="Approved!!" FontSize="20" FontAttributes="Bold" TextColor="#6ee662" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="#363636" FontSize="15" Text="This guardian has permission to pick up the student!!"/>
+                        <Label Text="Aprobado!!" FontSize="20" FontAttributes="Bold" TextColor="#6ee662" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="#363636" FontSize="15" Text="El guardian tiene permiso!!"/>
                     </StackLayout>
                 </Grid>
             </Frame>
-            <Button Grid.Row="1" Text="CONTINUE" TextColor="White" HeightRequest="45" BackgroundColor="#6ee662" Clicked="exit"/>
+            <Button Grid.Row="1" Text="OK" TextColor="White" HeightRequest="45" BackgroundColor="#6ee662" Clicked="exit"/>
         </Grid>
     </ContentPage.Content>
 </rg:PopupPage>

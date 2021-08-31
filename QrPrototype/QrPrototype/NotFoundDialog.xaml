@@ -11,12 +11,12 @@
                 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Image Source="warning.png" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="0, 10, 0, 0"/>
                     <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
-                        <Label Text="Not Found" FontSize="20" FontAttributes="Bold" TextColor="#363636" HorizontalTextAlignment="Center"/>
+                        <Label Text="No Encontrado" FontSize="20" FontAttributes="Bold" TextColor="#363636" HorizontalTextAlignment="Center"/>
                         <Label TextColor="#363636" FontSize="15" Text="There is no such code"/>
                     </StackLayout>
                 </Grid>
             </Frame>
-            <Button Grid.Row="1" Text="BACK" TextColor="White" HeightRequest="45" BackgroundColor="#363636" Clicked="exit"/>
+            <Button Grid.Row="1" Text="OK" TextColor="White" HeightRequest="45" BackgroundColor="#363636" Clicked="exit"/>
         </Grid>
     </ContentPage.Content>
 </rg:PopupPage>

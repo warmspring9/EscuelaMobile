@@ -145,6 +145,7 @@ namespace QrPrototype
         {
             guardian_info.IsVisible = !guardian_info.IsVisible;
             scan_btn.IsVisible = !scan_btn.IsVisible;
+            config_btn.IsVisible = !config_btn.IsVisible;
 
             if (!guardian_info.IsVisible)
             {
@@ -158,6 +159,12 @@ namespace QrPrototype
             {
                 Launcher.OpenAsync(new Uri("tel:" + current_phone));
             }
+        }
+
+        private async void change_connection_string(Object sender, EventArgs e)
+        {
+            string result = await DisplayPromptAsync("Cambiar Ip", "Cual es la ip de tu servicio?");
+            path = result;
         }
     }
 }

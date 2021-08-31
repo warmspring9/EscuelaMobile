@@ -26,12 +26,12 @@
                         Margin="0, 2, 0, 0"
                         Grid.ColumnSpan="1"/>
 
-                <Button Text="Scan a Student!" Clicked="scan_for_student"
+                <Button Text="Escanear Estudiante!" Clicked="scan_for_student"
                         Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5"
                         CornerRadius="20" BackgroundColor="#3387cd"
                         TextColor="White" VerticalOptions="End"/>
                 
-                <Button Text="Exit" Clicked="change_visibility"
+                <Button Text="Salir" Clicked="change_visibility"
                         Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5"
                         CornerRadius="20" BackgroundColor="#3387cd"
                         TextColor="White" VerticalOptions="End"/>
@@ -40,8 +40,14 @@
 
         </Frame>
         <Frame VerticalOptions="End">
-            <Button x:Name="scan_btn" IsVisible="true" Text="Scan a guardian!" Clicked="Scan_for_qr"
+            <Button x:Name="scan_btn" IsVisible="true" Text="Escanear Guardian!" Clicked="Scan_for_qr"
                         Margin="20, 0, 20, 20"
+                        CornerRadius="20" BackgroundColor="#3387cd"
+                        TextColor="White" VerticalOptions="End"/>
+        </Frame>
+        <Frame VerticalOptions="End">
+            <Button x:Name="config_btn" IsVisible="true" Text="Configuracion" Clicked="change_connection_string"
+                    Padding="20, 20, 20, 20"
                         CornerRadius="20" BackgroundColor="#3387cd"
                         TextColor="White" VerticalOptions="End"/>
         </Frame>
