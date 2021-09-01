@@ -11,7 +11,7 @@
                     <Image Source="error.png" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="0, 10, 0, 0"/>
                     <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
                         <Label Text="Denegado" FontSize="20" FontAttributes="Bold" TextColor="#ff3232" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="#363636" FontSize="15" Text="El guardian no tiene permiso!!"/>
+                        <Label TextColor="#363636" FontSize="15" Text="El encargado no tiene permiso!!"/>
                     </StackLayout>
                 </Grid>
             </Frame>

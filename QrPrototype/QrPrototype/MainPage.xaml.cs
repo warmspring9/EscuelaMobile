@@ -14,6 +14,8 @@ using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using System.Net;
+using System.Net.Sockets;
 
 namespace QrPrototype
 {
@@ -48,6 +50,7 @@ namespace QrPrototype
         static HttpClient client = new HttpClient();
         // API conection string
         static string path;
+        string ServiceIp;
 
         private IDictionary<string, Person> guardians = new Dictionary<string, Person>();
         private IDictionary<string, string> permits = new Dictionary<string, string>();
@@ -58,20 +61,22 @@ namespace QrPrototype
         {
             InitializeComponent();
 
-            try
-            {
+            string ipDevice = GetLocalIPAddress();
+            string[] partialIp = ipDevice.Split('.');
+            ServiceIp = string.Concat(partialIp[0], ".", partialIp[1], ".", partialIp[2], ".", "254");
+
+            if (Application.Current.Properties.ContainsKey("conn_string"))
                 path = (string)Application.Current.Properties["conn_string"];
-                path = path;
-                if (path == "")
-                {
-                    path = "http://192.168.100.5/api/mobilguardian";
+
+            if (string.IsNullOrEmpty(path))
+            {
+                path = "http://"+ServiceIp+"/api/mobilguardian";
+
+                if (Application.Current.Properties.ContainsKey("conn_string"))
+                    Application.Current.Properties["conn_string"] = path;
+                else
                     Application.Current.Properties.Add("conn_string", path);
                 }
-            }
-            catch
-            {
-                Application.Current.Properties.Add("conn_string", "http://192.168.100.5/api/mobilguardian");
-            }
         }
 
         private void Scan_for_qr(object sender, EventArgs e)
@@ -86,7 +91,6 @@ namespace QrPrototype
                     await Navigation.PopAsync();
 
                     path = (string)Application.Current.Properties["conn_string"];
-                    path = path;
 
                     //api call
                     string parameter = $"?id={result.Text}";
@@ -119,8 +123,9 @@ namespace QrPrototype
                     } 
                     catch (Exception excp)
                     {
-                        // TODO have to make api error page
-                        return;
+                        await DisplayAlert("Alerta", "Verifique la direccion IP del servicio.\n " +
+                            "Actual: " + path.Substring(7, path.IndexOf("/api") - path.IndexOf("http://") - 7) +
+                            "\n o que el servidor este funcionando correctamente.", "OK");
                     }
                     
                 });
@@ -139,7 +144,6 @@ namespace QrPrototype
                     await Navigation.PopAsync();
 
                     path = (string)Application.Current.Properties["conn_string"];
-                    path = path;
 
                     AuthRequest inputs = new AuthRequest();
                     inputs.idGuardian = current_id;
@@ -185,10 +189,26 @@ namespace QrPrototype
 
         private async void change_connection_string(Object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync("Cambiar Ip", "Cual es la ip de tu servicio? Actual: " + path);
-            path = result;
+            string result = await DisplayPromptAsync("Cambiar Ip", "Cual es la ip de tu servicio? Actual: " + path.Substring(7,path.IndexOf("/api")-path.IndexOf("http://")-7));
 
-            Application.Current.Properties["conn_string"] = result;
+            if(!string.IsNullOrEmpty(result))
+            {
+                path = "http://" + result + "/api/mobilguardian";
+                Application.Current.Properties["conn_string"] = path;
+            }      
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No dispositivos con direccion IPv4 encontrados!");
         }
     }
 }

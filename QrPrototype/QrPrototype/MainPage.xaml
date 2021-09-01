@@ -40,7 +40,7 @@
 
         </Frame>
         <Frame VerticalOptions="End">
-            <Button x:Name="scan_btn" IsVisible="true" Text="Escanear Guardian!" Clicked="Scan_for_qr"
+            <Button x:Name="scan_btn" IsVisible="true" Text="Escanear Encargado!" Clicked="Scan_for_qr"
                         Margin="20, 0, 20, 20"
                         CornerRadius="20" BackgroundColor="#3387cd"
                         TextColor="White" VerticalOptions="End"/>
