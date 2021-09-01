@@ -47,7 +47,7 @@ namespace QrPrototype
     {
         static HttpClient client = new HttpClient();
         // API conection string
-        static string path = "http://192.168.100.5/api/mobilguardian";
+        static string path;
 
         private IDictionary<string, Person> guardians = new Dictionary<string, Person>();
         private IDictionary<string, string> permits = new Dictionary<string, string>();
@@ -57,6 +57,21 @@ namespace QrPrototype
         public MainPage()
         {
             InitializeComponent();
+
+            try
+            {
+                path = (string)Application.Current.Properties["conn_string"];
+                path = path;
+                if (path == "")
+                {
+                    path = "http://192.168.100.5/api/mobilguardian";
+                    Application.Current.Properties.Add("conn_string", path);
+                }
+            }
+            catch
+            {
+                Application.Current.Properties.Add("conn_string", "http://192.168.100.5/api/mobilguardian");
+            }
         }
 
         private void Scan_for_qr(object sender, EventArgs e)
@@ -69,6 +84,9 @@ namespace QrPrototype
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Navigation.PopAsync();
+
+                    path = (string)Application.Current.Properties["conn_string"];
+                    path = path;
 
                     //api call
                     string parameter = $"?id={result.Text}";
@@ -119,6 +137,10 @@ namespace QrPrototype
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Navigation.PopAsync();
+
+                    path = (string)Application.Current.Properties["conn_string"];
+                    path = path;
+
                     AuthRequest inputs = new AuthRequest();
                     inputs.idGuardian = current_id;
                     inputs.idStudent = result.Text;
@@ -163,8 +185,10 @@ namespace QrPrototype
 
         private async void change_connection_string(Object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync("Cambiar Ip", "Cual es la ip de tu servicio?");
+            string result = await DisplayPromptAsync("Cambiar Ip", "Cual es la ip de tu servicio? Actual: " + path);
             path = result;
+
+            Application.Current.Properties["conn_string"] = result;
         }
     }
 }
